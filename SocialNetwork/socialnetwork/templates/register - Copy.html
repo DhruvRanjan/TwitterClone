@@ -1,0 +1,35 @@
+<!DOCTYPE HTML>
+{% load staticfiles %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Register</title>
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static 'css/format.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+
+<h1> Register </h1>
+
+<form method="post" action="{% url 'register' %}">
+{% for field in form.visible_fields %}
+{{field.label_tag}} <br>
+{{field}} <br>
+{{field.errors}} <br>
+{% endfor %}
+
+{% for field in form.hidden_fields %}
+{{field}} <br>
+{% endfor %}
+
+{% csrf_token %}
+<input type="submit" value="Register" />
+</form>
+
+</body>
+</html>
+

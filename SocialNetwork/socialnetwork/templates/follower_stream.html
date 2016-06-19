@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<title> {% block title %} Followers Posts {% endblock %} </title>
+
+
+{% block content %}
+<div class="container">
+	<div class="starter-template">
+		<div class="post-head">
+			<h1>Follower's posts</h1>
+		</div>
+			<p>
+				<div class="post-contents">
+					{%for post in posts%}
+						{% for mUser in myUser%}
+							{%if mUser.user == post.user %}
+								<img src="{{ mUser.profile_picture.url }}" height="30" width="30"/>
+							{% endif %}
+						{% endfor %}
+					User: <a href="{%url 'profileView' post.user %}"> {{post.user}} </a> <br>
+					Date/time: {{post.post_date}} <br>
+					Post: {{post.post_text}} <br>
+					<br>
+					{% endfor %}
+				</div>
+			</p>
+	</div>
+</div>
+{% endblock %}
+

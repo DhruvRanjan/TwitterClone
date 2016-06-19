@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title> Profile </title>
+	<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+	<link href="{% static 'css/format.css' %}" rel="stylesheet">
+<body>
+<h4> <a href="{%url 'logout' %}"> logout </a></h4>
+<h1> Profile </h1>
+<h2> Info </h2>
+<p>
+	{% for user in users %}
+	Username: {{user.username}} <br>
+	First Name: {{user.first_name}} <br>
+	Last Name: {{user.last_name}} <br>
+	{% endfor %}
+</p>
+<h2> Posts <h2>
+<p> See all posts <a href="{%url 'globalStream'%}"> Global Stream </a></p>
+<p> Make Post </p>
+<form method="post" action="{% url 'profile' %}">
+{% for field in form.visible_fields %}
+{{field.label_tag}} <br>
+{{field}} <br>
+{{field.errors}} <br>
+{% endfor %}
+
+{% csrf_token %}
+<input type="submit" value="Submit"/ >
+</form>
+
+<h2> My posts </h2>
+<p>
+	{% for post in posts %}
+	{{post.post_text}} <br>
+	{{post.post_date}} <br>
+	<br>
+	{% endfor %}
+</p>
+
+</body>
+</html>

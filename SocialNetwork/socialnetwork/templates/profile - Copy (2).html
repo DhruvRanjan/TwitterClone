@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+<title> Profile </title>
+
+{% block content %}
+<div class="container">
+	<div class="starter-template">
+		<div class="profile-header">
+			<h1> {{users.0.first_name}}'s Profile </h1>
+			<a href="{%url 'editProfile' %}"> edit </a>
+		</div>
+		<div class="info">
+		<h2> Info </h2>
+			<p>
+				<!--Username: {{users.0.username}} <br> -->
+				First Name: {{users.0.first_name}} <br>
+				Last Name: {{users.0.last_name}} <br>
+				Age: {{myUser.0.age}}<br>
+				Bio: {{myUser.0.bio}}<br>
+		</div>
+			</p>
+		<div class="profile-picture">
+			<img src="{{ myUser.0.profile_picture.url }}" height="300" width="300"/>
+		</div>
+		<div class="posts">
+		<h2> Write post <h2>
+			<form method="post" action="{% url 'profile' %}">
+				{% for field in form.visible_fields %}
+					{{field}} <br>
+					{{field.errors}} <br>
+				{% endfor %}
+				{% csrf_token %}
+				<input type="submit" value="Submit"/ >
+			</form>
+		</div>
+		<div class="myPosts">
+		<h2> My posts </h2>
+		<p>
+			{% for post in posts %}
+			{{post.post_text}} <br>
+			{{post.post_date}} <br>
+			<br>
+			{% endfor %}
+		</p>
+		</div>
+	</div>
+</div>
+{% endblock %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}"></script>
+</body>
+</html>

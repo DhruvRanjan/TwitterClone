@@ -1,0 +1,52 @@
+
+/*body{
+	text-align: center;
+	background-color: #CEDBD9;
+} 
+
+p{
+	margin: 30px; 
+	background-color: white;
+} */ 
+
+body {
+
+	padding-top: 50px; 
+	background-color: #CEDBD9;
+	text-align: center;
+
+}
+
+.starter-template { 
+
+	padding: 40px 15px;
+	text-align: center;
+
+}
+
+.info {
+	
+	padding-top: 50px;
+	float: left;
+	padding-left: 30px;
+	width: 200px;
+	height: 150px;
+	text-align: left;
+
+}
+
+.myPosts{
+	
+	float: right;
+	padding-top: 50px;
+}
+.posts {
+	
+	padding-top: 50px;
+	float: left;
+	padding-left: 30px;
+	width: 440px;
+	height: 200px;
+	text-align: left;
+	
+}

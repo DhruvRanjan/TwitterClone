@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+<title> {% block title %} All Posts {% endblock %} </title>
+
+
+{% block content %}
+<div class="container">
+	<div class="starter-template">
+		<div class="post-head">
+			<h1>All posts</h1>
+		</div>
+			<p>
+				<div class="post-contents">
+					{%for post in posts%}
+						{% for mUser in myUser%}
+							{%if mUser.user == post.user %}
+								{% if mUser.profile_picture %}
+									<img src="{{ mUser.profile_picture.url }}" height="30" width="30"/>
+								{% endif %}
+							{% endif %}
+						{% endfor %}
+					User: <a href="{%url 'profileView' post.user %}"> {{post.user}} </a> <br>
+					Date/time: {{post.post_date}} <br>
+					Post: {{post.post_text}} <br>
+					<br>
+					{% endfor %}
+				</div>
+			</p>
+	</div>
+</div>
+{% endblock %}
+
